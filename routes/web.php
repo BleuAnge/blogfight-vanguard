@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\PostController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\Posts;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Get All
+Route::get('/', [PostController::class, 'index']);
+
+//Create Post
+Route::get('/posts/create', [PostController::class, 'create']);
+
+//Store Post
+Route::post('/posts', [PostController::class, 'store']);
+
+//Get Filter
+Route::get('/posts/{post}', [PostController::class, 'getOne']);
